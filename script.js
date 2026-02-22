@@ -26,8 +26,10 @@ themeButton.addEventListener('click', function() {
    }
 });
 
-
-
+// Вспомогательная функция для проверки ввода на пустое значение или NaN
+function isValidNumber(input) {
+  return input && !Number.isNaN(input);
+}
 
 // ЗАДАНИЕ 1: Валидация
 function checkLogin() {
@@ -58,10 +60,6 @@ function checkLogin() {
   }
 }
 
-function isValidNumber(input) {
-  // проверяем есть ли значение и является ли числом.
-  return input && !Number.isNaN(input);
-}
 
 // ЗАДАНИЕ 2: Скидки
 function calculateDiscount() {
@@ -137,17 +135,19 @@ function convertCurrency() {
 }
 
 function startQuiz() {
+  // Для проверки ответа на вопрос используем массив ключевых слов
+  // если есть хоть одно совпадение, то ответ засчитываем
 
   let count = 0; // счетчик правильных ответов
 
   const questions = [
     {
       questionText: "Чем отличается === от == ?",
-      answerKeys: ['не прив', 'тип', 'cравнив']
+      answerKeys: ['не прив', 'тип', 'cравнив', 'по значению и типу']
     },
     {
       questionText: "Зачем нужна проверка NaN?",
-      answerKeys:  ['избежания ошибок', 'обнаружения ошибок']
+      answerKeys:  ['избежания ошибок', 'обнаружения ошибок', 'неправильный тип', 'неправильным типом']
     },
     {
       questionText: "Напишите результат выражения 2 + '2'",
