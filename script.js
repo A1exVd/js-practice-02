@@ -67,7 +67,7 @@ function calculateDiscount() {
   const res = document.getElementById("discountResult");
 
   if(!isValidNumber(sum)) {
-    res.textContent = "Ошибка: Значение не может быть пустым и должно быть числом!!"
+    res.textContent = "Ошибка: Значение не может быть пустым и должно быть числом!"
     res.classList.add("error");
     return;
   } 
@@ -93,8 +93,8 @@ function calculateDiscount() {
   `
 }
 
-// Остальные функции аналогично...
 
+// ЗАДАНИЕ 3: Конвертер валют
 function convertCurrency() {
   const RATE_USD = 0.35;
   const RATE_EUR = 0.30;
@@ -104,8 +104,8 @@ function convertCurrency() {
   const currency = document.getElementById("currencySelect").value
   const res = document.getElementById("convertResult");
 
-  if(!isValidNumber(sum) && sum !== 0) {
-    res.textContent = "Ошибка: значение должно быть числом!!!"
+  if(!isValidNumber(sum)) {
+    res.textContent = "Ошибка: Значение не может быть пустым и должно быть > 0!!!"
     res.classList.add("error");
     return;
   } 
@@ -134,6 +134,8 @@ function convertCurrency() {
 
 }
 
+
+// ЗАДАНИЕ 4: Интерактивный квиз
 function startQuiz() {
   // Для проверки ответа на вопрос используем массив ключевых слов
   // если есть хоть одно совпадение, то ответ засчитываем
@@ -163,7 +165,7 @@ function startQuiz() {
       return;
     }
     
-   for (const answerKey of answerKeys) {
+   for (const answerKey of answerKeys) {  // Перебираем ключевые слова для поиска совпадений
       if(answer.includes(answerKey)) {
         count++;
         break;
