@@ -80,7 +80,7 @@ function calculateDiscount() {
   const res = document.getElementById("discountResult");
 
   if(sumInput.value.length > 10) {
-    res.textContent = "Ошибка: Поле ввода может содержать не более 10 символов"
+    res.textContent = "Ошибка: Поле ввода может содержать не более 10 символов!"
     res.classList.add("error");
     return
   }
@@ -132,7 +132,7 @@ function convertCurrency() {
   const sum = Number(sumInput.value);
   
   if(sumInput.value.length > 15) {
-    res.textContent = "Ошибка: Поле ввода может содержать не более 15 символов"
+    res.textContent = "Ошибка: Поле ввода может содержать не более 15 символов!"
     res.classList.add("error");
     return
   }
@@ -180,6 +180,8 @@ function startQuiz() {
   // если есть хоть одно совпадение, то ответ засчитываем
 
   let count = 0; // счетчик правильных ответов
+  const res = document.getElementById("quizResult");
+  res.classList.remove("error");
 
   const questions = [
     {
@@ -200,19 +202,21 @@ function startQuiz() {
     const answer = prompt(questionText);
     
     if(answer === null) {
-      alert("Квиз отменён!!!")
+      res.textContent = "Квиз отменён!!!"
+      res.classList.add("error");
       return;
     }
+
     
-   for (const answerKey of answerKeys) {  // Перебираем ключевые слова для поиска совпадений
+    for (const answerKey of answerKeys) {  // Перебираем ключевые слова для поиска совпадений
       if(answer.includes(answerKey)) {
         count++;
         break;
       }
-   }
+    }
   }
 
-  alert(`Ваш результат ${count}/3`);
+  res.textContent = `Ваш результат ${count}/3`;
 }
 
 const loginBtn = document.getElementById("loginBtn");
