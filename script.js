@@ -32,10 +32,19 @@ function isValidNumber(input) {
 }
 
 function isValidCoins(sum) {
-  const coins = sum.toString().split('.')[1];
+  const coins = sum.split('.')[1];
   return coins.length === 2;
 }
 
+function isValidInputLength(inputValue, maxLength) { // параметр inputValue - строка, maxLength - кол-во символов в вводе
+  // делаем проверку, является ли число с плавающей точкой
+  if(!Number.isInteger(Number(inputValue))) {
+    return inputValue.length - 1 <= maxLength // убираем точку как лишний знак
+  } else {
+    return inputValue.length <= maxLength
+  }
+  
+}
 
 // ЗАДАНИЕ 1: Валидация
 function checkLogin() {
@@ -44,7 +53,7 @@ function checkLogin() {
   const email = document.getElementById("emailInput").value;
   const res = document.getElementById("loginResult");
 
-  const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,3}$/;
+  const emailRegex = /^(?!.*\-\-)(?!.*\.\.)(?!.*\.\-)(?!.*\-\.)[a-zA-Z0-9]+[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,3}$/;
 
   res.textContent;
 
@@ -79,7 +88,9 @@ function calculateDiscount() {
   const sum = Number(sumInput.value);
   const res = document.getElementById("discountResult");
 
-  if(sumInput.value.length > 10) {
+
+
+  if(!isValidInputLength(sumInput.value, 10)) {
     res.textContent = "Ошибка: Поле ввода может содержать не более 10 символов!"
     res.classList.add("error");
     return
@@ -91,7 +102,7 @@ function calculateDiscount() {
     return;
   } ;
 
-  if(!Number.isInteger(sum) && !isValidCoins(sum)) {
+  if(!Number.isInteger(sum) && !isValidCoins(sumInput.value)) {
     res.textContent = "Ошибка: У денежных сумм может быть только два знака после запятой!"
     res.classList.add("error");
       return;
@@ -131,7 +142,7 @@ function convertCurrency() {
   const sumInput = document.getElementById("amountInput")
   const sum = Number(sumInput.value);
   
-  if(sumInput.value.length > 15) {
+  if(!isValidInputLength(sumInput.value, 15)) {
     res.textContent = "Ошибка: Поле ввода может содержать не более 15 символов!"
     res.classList.add("error");
     return
@@ -143,7 +154,7 @@ function convertCurrency() {
     return;
   } 
 
-  if(!Number.isInteger(sum) && !isValidCoins(sum)) {
+  if(!Number.isInteger(sum) && !isValidCoins(sumInput.value)) {
     res.textContent = "Ошибка: У денежных сумм может быть только два знака после запятой!"
     res.classList.add("error");
     return;
