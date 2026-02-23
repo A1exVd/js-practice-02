@@ -60,7 +60,7 @@ function checkLogin() {
   } else if (pass.length < 6) {
     errorMessage = "Ошибка: Пароль должен содержать не менее 6 символов!"
   } else if (pass.length > 128) {
-    errorMessage = "Ошибка: Пароль не должен содержать больше 128 символов!"
+    errorMessage = "Ошибка: Пароль не должен содержать более 128 символов!"
   }
 
   if (errorMessage) {
